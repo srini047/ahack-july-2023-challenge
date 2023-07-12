@@ -1,11 +1,18 @@
 import streamlit as st
 import warnings
 
+# Data
+import pandas as pd
+df = pd.read_csv('./archive/cleaned_data.csv')
+
+# Chat
 from app.chat import chat_with_pokemon_data
+
+# Plots
+from plots.radar_plot import radar
 
 warnings.filterwarnings("ignore")
 chat_history = []
-
 
 # App title
 st.set_page_config(page_title="😸💬 Pokemon Chat")
@@ -48,3 +55,16 @@ if st.session_state.messages[-1]["role"] != "assistant":
             st.write(response) 
     message = {"role": "assistant", "content": response}
     st.session_state.messages.append(message)
+
+################################################################
+# Here it has to be updated with intro and about the dataset
+
+
+################################################################
+# Plots
+with st.container():
+# 1. Radar plot
+   st.write("Radar plot")
+
+   # You can call any Streamlit command, including custom components:
+   st.plotly_chart(radar(df, "Charmander"))
