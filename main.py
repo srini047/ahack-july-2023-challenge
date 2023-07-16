@@ -3,20 +3,24 @@ import warnings
 
 # Data
 import pandas as pd
-df = pd.read_csv('./archive/cleaned_data.csv')
+
+df = pd.read_csv("./archive/cleaned_data.csv")
 
 # Chat
 from app.chat import chat_with_pokemon_data
 
 # Plots
-from plots.radar_plot import radar
+from pages.radar_plot import radar_plot
+from pages.contour_plot import contour_plot
+from pages.heatmap_plot import heatmap_plot
+
 
 warnings.filterwarnings("ignore")
 chat_history = []
 
 # App title
-st.set_page_config(page_title="😸💬 Pokemon Chat")
-st.title("Pokemon Chat")
+st.set_page_config(page_title="🏙️💬 Data Story Telling")
+st.title("Data Visualisation")
 st.caption("Talk your way through data")
 
 INITIAL_MESSAGE = [
@@ -33,7 +37,9 @@ with open("ui/styles.md", "r") as styles_file:
 
 # Store LLM generated responses
 if "messages" not in st.session_state.keys():
-    st.session_state.messages = [{"role": "assistant", "content": "How may I help you?"}]
+    st.session_state.messages = [
+        {"role": "assistant", "content": "How may I help you?"}
+    ]
 
 # Display chat messages
 for message in st.session_state.messages:
@@ -52,7 +58,7 @@ if st.session_state.messages[-1]["role"] != "assistant":
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
             response = chat_with_pokemon_data(prompt)
-            st.write(response) 
+            st.write(response)
     message = {"role": "assistant", "content": response}
     st.session_state.messages.append(message)
 
@@ -63,8 +69,14 @@ if st.session_state.messages[-1]["role"] != "assistant":
 ################################################################
 # Plots
 with st.container():
-# 1. Radar plot
-   st.write("Radar plot")
+    # 1. Radar plot
+    st.write("Radar plot")
+    st.plotly_chart(radar_plot(df, "Charmander"))
 
-   # You can call any Streamlit command, including custom components:
-   st.plotly_chart(radar(df, "Charmander"))
+    # 2. Contour plot (Not supported yet by Streamlit)
+    st.write("Contour plot")
+    st.plotly_chart(contour_plot(df))
+
+    # 3. Heatmap plot
+    st.write("Heatmap plot")
+    st.plotly_chart(heatmap_plot(df))
