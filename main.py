@@ -60,7 +60,7 @@ if st.session_state.messages[-1]["role"] != "assistant":
     # with st.chat_message("assistant"):
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
-            response = prompt
+            response = chat_with_pokemon_data(prompt)
             st.write(response)
     message = {"role": "assistant", "content": response}
     st.session_state.messages.append(message)
