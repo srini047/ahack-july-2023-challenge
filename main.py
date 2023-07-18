@@ -94,6 +94,6 @@ with st.container():
     st.write("Scatterplot 3D")
     st.plotly_chart(scatter_plot_3d(df, "Average Stats", "Atk-Def Ratio", "Speed"))
 
-    # 6. Top 10 plot ()
+    # 6. Top 10 plot (Bar graph)
     st.write("Top 10 plot")
     st.plotly_chart(top_ten_plot(df))
