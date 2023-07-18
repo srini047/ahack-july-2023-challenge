@@ -14,6 +14,8 @@ from pages.radar_plot import radar_plot
 from pages.contour_plot import contour_plot
 from pages.heatmap_plot import heatmap_plot
 from pages.total_dist_plot import dist_plot
+from pages.scatter_plot_3d import scatter_plot_3d
+from pages.top_ten_plot import top_ten_plot
 
 
 warnings.filterwarnings("ignore")
@@ -58,7 +60,7 @@ if st.session_state.messages[-1]["role"] != "assistant":
     # with st.chat_message("assistant"):
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
-            response = chat_with_pokemon_data(prompt)
+            response = prompt
             st.write(response)
     message = {"role": "assistant", "content": response}
     st.session_state.messages.append(message)
@@ -82,6 +84,16 @@ with st.container():
     st.write("Heatmap plot")
     st.plotly_chart(heatmap_plot(df))
 
-    # 4. Distplot
+    # 4. Dist plot
     st.write("Distplot")
-    st.plotly_chart(dist_plot(df, "HP", "Attack", "Defense", "Sp. Atk", "Sp. Def", "Speed"))
+    st.plotly_chart(
+        dist_plot(df, "HP", "Attack", "Defense", "Sp. Atk", "Sp. Def", "Speed")
+    )
+
+    # 5. Scatter plot - 3D
+    st.write("Scatterplot 3D")
+    st.plotly_chart(scatter_plot_3d(df, "Average Stats", "Atk-Def Ratio", "Speed"))
+
+    # 6. Top 10 plot ()
+    st.write("Top 10 plot")
+    st.plotly_chart(top_ten_plot(df))

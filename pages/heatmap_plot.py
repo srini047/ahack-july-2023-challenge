@@ -19,6 +19,7 @@ def heatmap_plot(df):
                 tickvals=[0, 50, 100, 150, 200],
                 ticks="outside",
             ),
+            text=df["Names"]
         )
     )
     return fig

@@ -28,6 +28,7 @@ def contour_plot(df):
             end=8,
             size=2,
         ),
+        text=df["Names"]
     ))
 
     return fig

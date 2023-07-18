@@ -18,6 +18,7 @@ def radar_plot(df, name):
             ],
             theta=["HP", "Attack", "Defense", "Sp. Atk", "Sp. Def", "Speed", "HP"],
             fill="toself",
+            text=df["Names"]
         )
     ]
 
