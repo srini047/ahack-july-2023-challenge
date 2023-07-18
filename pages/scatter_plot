@@ -1,0 +1,56 @@
+import plotly.graph_objects as go
+from plotly.offline import iplot
+def scatter_plot(df, name1, name2):
+      trace1 = go.Scatter(
+      x=df[name1],
+      y=df[name2],
+      mode='markers',
+      marker=dict(
+          size=df["Speed"],
+          color=df["Speed"],  # set color equal to a variable
+          colorscale='Viridis',  # choose a different colorscale
+          showscale=True,
+          colorbar=dict(
+              title='Speed',  # add a colorbar title
+              tickfont=dict(color='#ffffff'),  # customize colorbar tick font
+              thickness=15  # adjust colorbar thickness
+          ),
+          line=dict(
+              color='white',  # add white border around markers
+              width=0.5
+          ),
+          opacity=0.8  # set marker opacity
+      ),
+      text=df["Names"],
+      hovertemplate=
+      "<b>%{text}</b><br><br>" +
+      "Attack: %{y}<br>" +
+      "Defense: %{x}<br>" +
+      "Speed: %{marker.size}<extra></extra>",  # customize hover template
+  )
+  
+  data = [trace1]
+  
+  layout = go.Layout(
+      plot_bgcolor='rgba(0,0,0,1)',
+      xaxis=dict(
+          title='Defense',  # add x-axis label
+          title_font=dict(color='#ffffff'),  # customize x-axis label color
+          tickfont=dict(color='#ffffff'),  # customize x-axis tick font
+          zeroline=False  # remove x-axis zeroline
+      ),
+      yaxis=dict(
+          title='Attack',  # add y-axis label
+          title_font=dict(color='#ffffff'),  # customize y-axis label color
+          tickfont=dict(color='#ffffff'),  # customize y-axis tick font
+          zeroline=False  # remove y-axis zeroline
+      ),
+      title="Scatter plot of Defense vs Attack with Speed as colorscale",
+      title_font=dict(color='#ffffff'),  # customize title color
+      hovermode='closest',  # enable closest data point on hover
+      margin=dict(t=50)  # add margin to the top
+  )
+  
+  fig = go.Figure(data=data, layout=layout)
+  return iplot(fig, filename="Scatterplot")
+  
