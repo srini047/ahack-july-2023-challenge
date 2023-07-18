@@ -13,6 +13,7 @@ from app.chat import chat_with_pokemon_data
 from pages.radar_plot import radar_plot
 from pages.contour_plot import contour_plot
 from pages.heatmap_plot import heatmap_plot
+from pages.total_dist_plot import dist_plot
 
 
 warnings.filterwarnings("ignore")
@@ -80,3 +81,7 @@ with st.container():
     # 3. Heatmap plot
     st.write("Heatmap plot")
     st.plotly_chart(heatmap_plot(df))
+
+    # 4. Distplot
+    st.write("Distplot")
+    st.plotly_chart(dist_plot(df, "HP", "Attack", "Defense", "Sp. Atk", "Sp. Def", "Speed"))
