@@ -11,7 +11,7 @@ def chat_with_pokemon_data(prompt: str):
 
     agent = create_csv_agent(
         OpenAI(temperature=0.7),
-        "archive/pokemon.csv",
+        "archive/cleaned_data.csv",
         verbose=True,
         agent_type=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
     )
