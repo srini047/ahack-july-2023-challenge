@@ -1,0 +1,6 @@
+profiles:
+  - name: local
+    project: local
+    resources:
+      memory: 1GB
+    default: true
