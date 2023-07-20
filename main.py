@@ -112,7 +112,7 @@ with st.container():
     )
 
     # 2. Contour plot (Not supported yet by Streamlit)
-    st.write("Contour plot")
+    st.markdown("**Contour plot**")
     st.plotly_chart(contour_plot(df))
     st.markdown(
         """
@@ -130,12 +130,20 @@ in the selected Pokémon.
     )
 
     # 3. Heatmap plot
-    st.write("Heatmap of Top 10 Ranked Pokemon")
+    st.markdown("**Heatmap of Top 10 Ranked Pokemon**")
     st.plotly_chart(heatmap_plot(df))
-    # st.markdown("""""")
+    st.markdown(
+        """
+- The heatmap display shows a grid of color-coded cells, each representing the top 10 Pokémon. The X-axis shows the attributes (HP, Attack, Defense, Special Attack, Special Defense, and Speed) and the Y-axis shows the rank of those Pokémon.
+- The heatmap shows that the top Pokemon have high stats across multiple attributes. Pokémon at the top of the Y-axis (lower ranks) tend to have better stats, indicating their overall superiority in battle.
+- Some Pokémon are characterized by relatively balanced Trait Scores without extreme highs and lows. These versatile Pokémon sit in the middle of the Y axis, and their well-rounded stats prove that they can excel in a variety of situations.
+- On the other hand, certain Pokémon located at certain points along the Y axis specialize in certain attributes. For example, some Pokémon may have very high attack stats, but low HP and defense, and high attack power.
+- The heatmap's diverse colors reflect the wide range of strategies a trainer can employ. Some may prefer a completely offensive approach with Pokemon with high Attack and Speed, while others may opt for a defensive strategy with Pokemon with exceptional HP and Defense.  
+"""
+    )
 
     # 4. Dist plot
-    st.write("Distplot")
+    st.markdown("**Distplot**")
     st.plotly_chart(
         dist_plot(df, "HP", "Attack", "Defense", "Sp. Atk", "Sp. Def", "Speed")
     )
@@ -152,7 +160,7 @@ in the selected Pokémon.
     )
 
     # 5. Scatter plot - 3D
-    st.write("3D Scatter Plot of Average stats, Attack-Defense ratio, and Speed")
+    st.markdown("**3D Scatter Plot of Average stats, Attack-Defense ratio, and Speed**")
     st.plotly_chart(scatter_plot_3d(df, "Average Stats", "Atk-Def Ratio", "Speed"))
     st.markdown(
         """
@@ -172,7 +180,7 @@ In the realm of Pokemon, this data visualization becomes a beacon of knowledge, 
     )
 
     # 6. Top 10 plot (Bar graph)
-    st.write("Top 10 plot")
+    st.markdown("**Top 10 plot**")
     st.plotly_chart(top_ten_plot(df))
     st.markdown(
         """

@@ -40,22 +40,23 @@ def heatmap_plot(df):
     # Add the heatmap trace
     fig.add_trace(go.Heatmap(
         z=pokemon_data,
-        text=top_10['Names'],  # Set the text to display Pokemon names from the dataset column
-        hovertemplate='Pokemon: %{text}<extra></extra>',  # Customize the hover template--------------------------------------> name isnt displaying.check it.
         colorbar=dict(
             title="Stats",
             titleside="top",
             tickmode="array",
             tickvals=[0, 50, 100, 150, 200],
             ticks="outside"
-        )
+        ),
+        hovertemplate="{text}",
+        text=df["Names"],
+        colorscale="Viridis"
     ))
 
     # Set the layout and display the figure
     layout = go.Layout(
         title="Heatmap of Top 10 Ranked Pokemon",
         xaxis=dict(title="Attributes"),
-        yaxis=dict(title="Rank")
+        yaxis=dict(title="Rank"),
     )
 
     fig.update_layout(layout)
