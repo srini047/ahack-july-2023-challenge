@@ -22,7 +22,9 @@ warnings.filterwarnings("ignore")
 chat_history = []
 
 # App title
-st.set_page_config(page_title="🏙️💬 Data Story Telling")
+st.set_page_config(
+    page_title="🏙️💬 Data Story Telling", initial_sidebar_state="collapsed"
+)
 st.title("Data Visualisation & Intepretation")
 st.caption("Talk your way through data")
 
@@ -70,25 +72,21 @@ if st.session_state.messages[-1]["role"] != "assistant":
 
 st.markdown(
     """
-Welcome to the world of Pokemon, where adventure, strategy, and special creatures await! This dataset delves into the fascinating world of Pokemon games, not just maps and Pokemon Go. Here you'll uncover the mysteries of 721 unique Pokémon, each with their own traits and abilities.
-Our dataset comprehensively illustrates the traits that shape the strengths and abilities of these remarkable creatures. Get the core information right from the start.
-The dataset contains various traits of each Pokemon such as: B. Its her ID number, its name, and its primary and secondary his types. These types determine the Pokémon's vulnerability and resistance to various types of attacks, adding a strategic element to battles.
-Beyond types, we look at the basic stats that affect a Pokémon's performance in battle. These statistics include:
-HP (Hit Points):
-HP represents a Pokémon's health and determines how much damage it can take before being stunned. A higher HP value means a higher ability to withstand attacks.
-attack:
-Basic modifiers for normal attacks such as scratch and punch. Pokémon with higher attack stats have higher health in battle.
-defense:
-This stat measures a Pokémon's resistance to basic attacks, reducing the damage it takes. The higher the defense stat, the more durable the Pokémon will be.
-Special attack (SP attack):
-SP Atk indicates a Pokémon's ability to use unique and powerful abilities as base modifiers for special attacks such as Fire Blast and Bubble Jet.
-Special Defense (SP Def):
-SP Def reflects a Pokémon's resistance to special attacks and protects it from the full effects of such moves. The higher the SP Defense, the more the Pokémon's resistance to special abilities.
-speed:
-An important trait that determines a Pokémon's speed and attack order in battle. The higher the speed stat, the more advantage you have when attacking first.
-These stats culminate in overall attributes, which are a general indicator of a Pokémon's overall power. Summarizing the stats above, the overall traits serve as a helpful guide when assessing the relative strength of each Pokémon.
-This dataset serves as a great resource for statistics lessons, allowing you to introduce the concepts of data analysis and visualization into the fascinating world of Pokémon. Additionally, for specific Pokémon types, we can also explore the intersection of this dataset and the exciting realm of machine learning. Prepare for an immersive journey as you analyze, visualize, and interpret the data behind these extraordinary creatures. Together we will uncover hidden stories, uncover the mysteries of Pokemon battles, develop a better understanding of the intricacies of Pokemon battles, and grow you into an accomplished Pokemon Trainer.
-Grab your Poké Ball, choose your favorite Pokémon, and immerse yourself in adventure! The world of Pokémon awaits your arrival.
+- Welcome to the **World of Pokemon**, where adventure, strategy, and special creatures await! This dataset delves into the fascinating world of Pokemon games, not just maps and Pokemon Go. Here you'll uncover the mysteries of 721 unique Pokémon, each with their own traits and abilities.
+- Our dataset comprehensively illustrates the traits that shape the strengths and abilities of these remarkable creatures. Get the core information right from the start.
+- The dataset contains various traits of each Pokemon such as: B. Its her ID number, its name, and its primary and secondary his types. These types determine the Pokémon's vulnerability and resistance to various types of attacks, adding a strategic element to battles.
+- Beyond types, we look at the basic stats that affect a Pokémon's performance in battle. These statistics include:
+- - `HP (Hit Points)`: HP represents a Pokémon's health and determines how much damage it can take before being stunned. A higher HP value means a higher ability to withstand attacks.
+- - `Attack:` Basic modifiers for normal attacks such as scratch and punch. Pokémon with higher attack stats have higher health in battle.
+- - `Defense:` This stat measures a Pokémon's resistance to basic attacks, reducing the damage it takes. The higher the defense stat, the more durable the Pokémon will be.
+- - `Special attack (SP attack):` SP Atk indicates a Pokémon's ability to use unique and powerful abilities as base modifiers for special attacks such as Fire Blast and Bubble Jet.
+- - `Special Defense (SP Def):` SP Def reflects a Pokémon's resistance to special attacks and protects it from the full effects of such moves. The higher the SP Defense, the more the Pokémon's resistance to special abilities.
+- - `Speed:` An important trait that determines a Pokémon's speed and attack order in battle. The higher the speed stat, the more advantage you have when attacking first.
+<br/ >
+
+- These stats culminate in overall attributes, which are a general indicator of a Pokémon's overall power. Summarizing the stats above, the overall traits serve as a helpful guide when assessing the relative strength of each Pokémon.
+- This dataset serves as a great resource for statistics lessons, allowing you to introduce the concepts of data analysis and visualization into the fascinating world of Pokémon. Additionally, for specific Pokémon types, we can also explore the intersection of this dataset and the exciting realm of machine learning. Prepare for an immersive journey as you analyze, visualize, and interpret the data behind these extraordinary creatures. Together we will uncover hidden stories, uncover the mysteries of Pokemon battles, develop a better understanding of the intricacies of Pokemon battles, and grow you into an accomplished Pokemon Trainer.
+- Grab your Poké Ball, choose your favorite Pokémon, and immerse yourself in adventure! The world of Pokémon awaits your arrival.
 """
 )
 
@@ -96,7 +94,7 @@ Grab your Poké Ball, choose your favorite Pokémon, and immerse yourself in adv
 # Plots
 with st.container():
     # 1. Radar plot
-    st.write("Radar plot")
+    st.write("Stats of Pokemon[Charmander]")
     st.plotly_chart(radar_plot(df, "Charmander"))
     st.markdown(
         """
@@ -132,7 +130,7 @@ in the selected Pokémon.
     )
 
     # 3. Heatmap plot
-    st.write("Heatmap plot")
+    st.write("Heatmap of Top 10 Ranked Pokemon")
     st.plotly_chart(heatmap_plot(df))
     # st.markdown("""""")
 
@@ -154,7 +152,7 @@ in the selected Pokémon.
     )
 
     # 5. Scatter plot - 3D
-    st.write("Scatterplot 3D")
+    st.write("3D Scatter Plot of Average stats, Attack-Defense ratio, and Speed")
     st.plotly_chart(scatter_plot_3d(df, "Average Stats", "Atk-Def Ratio", "Speed"))
     st.markdown(
         """
