@@ -1,8 +1,5 @@
 type: task
 
-env:
-  - OPENAI_API_KEY=""
-
 ports:
   - 8502
 
